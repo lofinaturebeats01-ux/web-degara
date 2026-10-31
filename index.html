@@ -456,7 +456,7 @@
 
             <!-- Imagen Preview -->
             <div class="rounded-2xl overflow-hidden mb-6 h-52 relative border border-white/10">
-              <img src="./img/6.jpg" alt="Acceso San Manuel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <img src="./img/desarrollo-sanmanuel.jpg" alt="Acceso Residencial Fraccionamiento San Manuel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
               <div class="absolute bottom-3 left-4 text-xs font-semibold text-white">
                 📍 Calle Navarreña y Calle Gamo, La Aurora
@@ -523,7 +523,7 @@
 
             <!-- Imagen Preview -->
             <div class="rounded-2xl overflow-hidden mb-6 h-52 relative border border-white/10">
-              <img src="./img/4.jpg" alt="Entorno Nogalar de la Aurora" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <img src="./img/desarrollo-nogalar.jpg" alt="Entorno Nogalar de la Aurora" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
               <div class="absolute bottom-3 left-4 text-xs font-semibold text-white">
                 📍 Zona Tradicional Nogalera, La Aurora
@@ -1446,8 +1446,9 @@
     }
 
     // ========================================================
-    // FABRICA DE CONTROLADORES DE VIDEO CON SCROLL (APPLE STYLE 60 FPS)
-    // Sincroniza bidireccionalmente el video tanto al bajar como al retroceder.
+    // FABRICA DE CONTROLADORES DE VIDEO CON SCROLL (APPLE STYLE 60 FPS LERP)
+    // Sincronización continua simétrica: tanto al avanzar como al retroceder
+    // con interpolación lineal ultra suave sin bloqueos de decoder.
     // ========================================================
     function createScrollScrubber(options) {
       const container = document.getElementById(options.containerId);
@@ -1465,9 +1466,10 @@
         vid.playsInline = true;
         vid.setAttribute('muted', '');
         vid.setAttribute('playsinline', '');
+        vid.pause();
 
         const initFrame = () => {
-          if (vid.currentTime === 0 && vid.duration > 0) {
+          if (vid.duration > 0 && vid.currentTime === 0) {
             vid.currentTime = 0.001;
           }
         };
@@ -1486,71 +1488,19 @@
         return (window.innerWidth >= 768) ? vidMobile : vidDesktop;
       }
 
-      let isPlaying = false;
-      let playPromise = null;
-      let shouldBePlaying = false;
-
-      function safePlay(vid) {
-        if (!vid) return;
-        shouldBePlaying = true;
-        if (vid.paused && !isPlaying) {
-          isPlaying = true;
-          playPromise = vid.play();
-          if (playPromise !== undefined) {
-            playPromise.then(() => {
-              isPlaying = false;
-              if (!shouldBePlaying && !vid.paused) {
-                vid.pause();
-              }
-            }).catch(() => {
-              isPlaying = false;
-            });
-          }
-        }
-      }
-
-      function safePause(vid) {
-        if (!vid) return;
-        shouldBePlaying = false;
-        if (!vid.paused) {
-          if (playPromise !== undefined) {
-            playPromise.then(() => {
-              if (!shouldBePlaying) {
-                vid.pause();
-              }
-            }).catch(() => {});
-          } else {
-            vid.pause();
-          }
-        }
-      }
-
-      let isSeeking = false;
-      let pendingSeekTime = null;
-
-      function seekVideo(vid, time) {
-        if (!vid || isNaN(time)) return;
-        const target = Math.max(0, Math.min(vid.duration || 0, time));
-        if (vid.seeking || isSeeking) {
-          pendingSeekTime = target;
-          return;
-        }
-        isSeeking = true;
-        vid.currentTime = target;
-      }
-
-      function onSeekEnd() {
-        isSeeking = false;
-        if (pendingSeekTime !== null) {
-          const next = pendingSeekTime;
-          pendingSeekTime = null;
-          seekVideo(getActiveVideo(), next);
-        }
-      }
-
-      videos.forEach(vid => vid.addEventListener('seeked', onSeekEnd));
-
       let targetProgreso = 0;
+      let smoothedProgreso = 0;
+      let isSeeking = false;
+
+      // Eventos de estado de búsqueda nativos
+      videos.forEach(vid => {
+        vid.addEventListener('seeked', () => {
+          isSeeking = false;
+        });
+        vid.addEventListener('seeking', () => {
+          isSeeking = true;
+        });
+      });
 
       function updateProgress() {
         const rect = container.getBoundingClientRect();
@@ -1570,31 +1520,31 @@
         }
 
         if (activeVid && activeVid.duration && !isNaN(activeVid.duration)) {
+          if (!activeVid.paused) {
+            activeVid.pause();
+          }
+
           const rect = container.getBoundingClientRect();
-          const isInView = rect.bottom > 0 && rect.top < window.innerHeight;
+          const isInView = rect.bottom > -150 && rect.top < window.innerHeight + 150;
 
           if (isInView) {
-            const targetTime = targetProgreso * activeVid.duration;
-            const diff = targetTime - activeVid.currentTime;
-
-            if (diff > 0.04) {
-              // Avance continuo fluido
-              if (diff > 1.2) {
-                safePause(activeVid);
-                seekVideo(activeVid, targetTime);
-              } else {
-                activeVid.playbackRate = Math.min(3.0, Math.max(0.75, diff * 3.2));
-                safePlay(activeVid);
-              }
-            } else if (diff < -0.04) {
-              // Retroceso fluido instantáneo
-              safePause(activeVid);
-              seekVideo(activeVid, targetTime);
+            // Suavizado LERP (Linear Interpolation) constante
+            // Ofrece respuesta elástica idéntica al subir o bajar el scroll
+            const diffProg = targetProgreso - smoothedProgreso;
+            if (Math.abs(diffProg) > 0.0001) {
+              smoothedProgreso += diffProg * 0.22;
             } else {
-              safePause(activeVid);
+              smoothedProgreso = targetProgreso;
             }
-          } else {
-            safePause(activeVid);
+
+            const targetTime = smoothedProgreso * activeVid.duration;
+            const diffTime = targetTime - activeVid.currentTime;
+
+            // Actualizar solo cuando el navegador haya terminado el frame anterior
+            // y exista una diferencia perceptible (> 0.015s = ~1/3 frame a 24fps)
+            if (!isSeeking && !activeVid.seeking && Math.abs(diffTime) > 0.015) {
+              activeVid.currentTime = Math.max(0, Math.min(activeVid.duration - 0.01, targetTime));
+            }
           }
         }
       }
@@ -1603,7 +1553,8 @@
         updateProgress();
         const activeVid = getActiveVideo();
         if (activeVid && activeVid.duration) {
-          seekVideo(activeVid, targetProgreso * activeVid.duration);
+          smoothedProgreso = targetProgreso;
+          activeVid.currentTime = targetProgreso * activeVid.duration;
         }
       }
 
