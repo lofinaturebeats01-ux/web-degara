@@ -516,8 +516,8 @@
             <a href="#financiamiento" class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white font-bold text-xs uppercase tracking-widest py-3.5 px-4 rounded-xl shadow-lg transition-all text-center">
               <span>📐</span> Cotizar San Manuel
             </a>
-            <a href="#masterplan" class="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-widest py-3.5 px-4 rounded-xl border border-white/20 transition-all text-center">
-              <span>🗺️</span> Ver Plano Lotes
+            <a href="#masterplan" onclick="cambiarPlano('sanmanuel')" class="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-widest py-3.5 px-4 rounded-xl border border-white/20 transition-all text-center">
+              <span>🗺️</span> Ver Plano San Manuel
             </a>
           </div>
 
@@ -580,14 +580,14 @@
 
           <!-- Botones de Acción -->
           <div class="flex flex-col sm:flex-row gap-3 mt-4 pt-4 border-t border-white/10">
+            <a href="#masterplan" onclick="cambiarPlano('nogalar')" class="flex-1 inline-flex items-center justify-center gap-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-500/40 font-bold text-xs uppercase tracking-widest py-3.5 px-4 rounded-xl transition-all text-center">
+              <span>🌳</span> Ver Plano Nogalar
+            </a>
             <a href="https://wa.me/528440000000?text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20y%20disponibilidad%20sobre%20el%20desarrollo%20Nogalar%20de%20la%20Aurora" 
                target="_blank"
                class="flex-1 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-white font-bold text-xs uppercase tracking-widest py-3.5 px-4 rounded-xl shadow-lg transition-all text-center">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.599 2.679-.702c.971.532 1.77.813 2.781.813h.005c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.767-5.768-5.767zm7.567 5.767c0 4.174-3.396 7.57-7.568 7.57-1.312 0-2.541-.339-3.626-.931l-4.048 1.062 1.082-3.951c-.689-1.144-1.077-2.487-1.076-3.75 0-4.174 3.397-7.57 7.568-7.57 4.173 0 7.568 3.396 7.568 7.57zm-4.321 2.378c-.147-.247-.542-.395-.887-.568-.346-.173-1.036-.511-1.196-.568-.16-.057-.276-.086-.393.086-.117.172-.455.568-.558.685-.103.117-.206.131-.353.057-.147-.074-.621-.229-1.183-.73-.437-.39-.732-.871-.818-1.018-.086-.147-.009-.227.065-.3.067-.066.147-.172.221-.258.074-.086.098-.147.147-.247.049-.099.025-.185-.012-.258-.037-.074-.393-.948-.54-1.3-.143-.343-.288-.296-.394-.301l-.337-.005c-.116 0-.306.043-.467.218-.16.175-.615.602-.615 1.468s.63 1.704.717 1.821c.087.117 1.239 1.892 3.003 2.653.42.181.748.289 1.004.37.422.134.806.115 1.11.07.338-.051 1.036-.423 1.183-.832.147-.409.147-.759.103-.832-.044-.073-.16-.117-.307-.19z"/></svg>
               <span>Consultar Nogalar</span>
-            </a>
-            <a href="#contacto" class="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-widest py-3.5 px-4 rounded-xl border border-white/20 transition-all text-center">
-              <span>📍</span> Agendar Recorrido
             </a>
           </div>
 
@@ -752,38 +752,142 @@
 
 
   <!-- ========================================================
-       SECCIÓN 5: PLANO DE LOTIFICACIÓN & MASTER PLAN
+       SECCIÓN 5: MASTER PLAN & PLANO DE LOTIFICACIÓN (CON SELECTOR DE DESARROLLO)
+       Fraccionamiento San Manuel (55 Lotes) vs Nogalar de la Aurora (Campestre)
        ======================================================== -->
   <section id="masterplan" class="py-24 max-w-7xl mx-auto px-6 lg:px-12">
     
     <!-- Encabezado -->
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <span class="text-xs font-bold uppercase tracking-[0.25em] text-brand-forest">Ubicación y Distribución</span>
-      <h2 class="text-3xl sm:text-5xl font-serif font-bold text-slate-900 mt-2">
-        Master Plan & Plano de Lotes
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold uppercase tracking-[0.25em] mb-3">
+        <span>🗺️</span> Distribución Arquitectónica
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-serif font-bold text-slate-900 mt-1">
+        Planos Oficiales de Lotificación
       </h2>
       <p class="text-slate-600 text-sm sm:text-base mt-3">
-        Elige tu ubicación preferida. Haz clic en el plano para consultar medidas y calles interiores.
+        Selecciona el desarrollo para consultar la distribución de manzanas, lotes disponibles, accesos y calles interiores.
       </p>
     </div>
 
-    <!-- Visor de Plano Interactivo -->
-    <div class="bg-white rounded-3xl p-6 sm:p-10 card-shadow border border-brand-border">
-      <div class="flex items-center justify-between mb-4">
+    <!-- SELECTOR DE DESARROLLO (TABS VIP) -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-2xl mx-auto mb-8 p-1.5 bg-slate-100 rounded-2xl border border-slate-200 shadow-inner">
+      <button id="tab-btn-sanmanuel" 
+              onclick="cambiarPlano('sanmanuel')" 
+              class="w-full sm:w-1/2 py-3.5 px-6 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 bg-brand-forest text-white shadow-lg">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Fracc. San Manuel (55 Lotes)</span>
+      </button>
+
+      <button id="tab-btn-nogalar" 
+              onclick="cambiarPlano('nogalar')" 
+              class="w-full sm:w-1/2 py-3.5 px-6 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900 hover:bg-white/60">
+        <span>🌳</span>
+        <span>Nogalar de la Aurora</span>
+      </button>
+    </div>
+
+    <!-- CONTENEDOR DEL PLANO 1: FRACCIONAMIENTO SAN MANUEL -->
+    <div id="plano-content-sanmanuel" class="bg-white rounded-3xl p-6 sm:p-10 card-shadow border border-brand-border transition-all duration-300">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-100">
         <div>
-          <h3 class="text-lg font-serif font-bold text-slate-900">Plano Oficial de Lotificación</h3>
-          <p class="text-xs text-slate-500">Haz clic sobre la imagen para ampliar en pantalla completa.</p>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[10px] font-bold uppercase tracking-widest bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full">Preventa Activa</span>
+            <span class="text-xs text-slate-400 font-mono">Plano No. 1 • Densidad H3</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-serif font-bold text-slate-900">Fraccionamiento San Manuel</h3>
+          <p class="text-xs text-slate-500 mt-1">Superficie Total: 20,037 m² • 55 Lotes Vendibles de 200 m² (10m x 20m) • Sobre Calle Navarreña y Calle Gamo.</p>
         </div>
-        <button onclick="abrirModalPlano()" class="text-xs font-bold text-brand-forest hover:text-emerald-700 uppercase tracking-wider flex items-center gap-1.5">
-          <span>🔍</span> Ampliar Plano
-        </button>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <a href="./plano-san-manuel.pdf" download="Plano-San-Manuel-Degara.pdf" target="_blank" class="text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-colors border border-slate-200">
+            <span>📥</span> Descargar PDF
+          </a>
+          <button onclick="abrirModalPlanoCon('sanmanuel')" class="text-xs font-bold bg-brand-forest hover:bg-brand-dark text-white px-5 py-2.5 rounded-xl uppercase tracking-wider flex items-center gap-1.5 shadow-md transition-all">
+            <span>🔍</span> Ampliar Plano
+          </button>
+        </div>
       </div>
 
-      <div class="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 cursor-zoom-in group relative" onclick="abrirModalPlano()">
-        <img src="./plano-lotes.jpg" alt="Plano de Lotes Nogalar de la Aurora" class="w-full h-auto max-h-[500px] object-contain mx-auto transition-transform duration-300 group-hover:scale-[1.02]">
-        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-          <span class="bg-white text-slate-900 font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full shadow-xl">
-            Clic para ver en grande
+      <!-- Métricas rápidas de San Manuel -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block">Lotes Vendibles</span>
+          <span class="text-base font-extrabold text-brand-forest font-mono">55 Unifamiliares</span>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block">Lote Tipo</span>
+          <span class="text-base font-extrabold text-brand-forest font-mono">200 m² (10x20)</span>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block">Área Municipal</span>
+          <span class="text-base font-extrabold text-brand-forest font-mono">1,883 m² (Parque)</span>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block">Vigilancia</span>
+          <span class="text-base font-extrabold text-brand-forest font-mono">Caseta 24/7</span>
+        </div>
+      </div>
+
+      <!-- Imagen Plano San Manuel con zoom al clic -->
+      <div class="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 cursor-zoom-in group relative shadow-inner" onclick="abrirModalPlanoCon('sanmanuel')">
+        <img src="./img/plano-san-manuel.jpg" alt="Plano Oficial Fraccionamiento San Manuel" class="w-full h-auto max-h-[580px] object-contain mx-auto transition-transform duration-300 group-hover:scale-[1.02]">
+        <div class="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <span class="bg-white text-slate-900 font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 transform group-hover:scale-105 transition-transform">
+            <span>🔍</span> Clic para ampliar en pantalla completa
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENEDOR DEL PLANO 2: NOGALAR DE LA AURORA (OCULTO POR DEFECTO) -->
+    <div id="plano-content-nogalar" class="hidden bg-white rounded-3xl p-6 sm:p-10 card-shadow border border-brand-border transition-all duration-300">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-slate-100">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-[10px] font-bold uppercase tracking-widest bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Campestre Exclusivo</span>
+            <span class="text-xs text-slate-400 font-mono">Huerta Tradicional La Aurora</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-serif font-bold text-slate-900">Nogalar de la Aurora</h3>
+          <p class="text-xs text-slate-500 mt-1">Lotes campestres de gran superficie inmersos en la histórica arboleda de nogales centenarios de Saltillo.</p>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <a href="https://wa.me/528440000000?text=Hola,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20y%20disponibilidad%20del%20plano%20de%20Nogalar%20de%20la%20Aurora" target="_blank" class="text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-colors">
+            <span>💬</span> Consultar Asesor
+          </a>
+          <button onclick="abrirModalPlanoCon('nogalar')" class="text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl uppercase tracking-wider flex items-center gap-1.5 shadow-md transition-all">
+            <span>🔍</span> Ampliar Plano
+          </button>
+        </div>
+      </div>
+
+      <!-- Métricas rápidas de Nogalar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block">Concepto</span>
+          <span class="text-base font-extrabold text-amber-800 font-mono">Campestre VIP</span>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block">Vegetación</span>
+          <span class="text-base font-extrabold text-amber-800 font-mono">Nogales Añosos</span>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block">Ambiente</span>
+          <span class="text-base font-extrabold text-amber-800 font-mono">Microclima Fresco</span>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
+          <span class="text-[10px] uppercase font-bold text-slate-400 block">Recorridos</span>
+          <span class="text-base font-extrabold text-amber-800 font-mono">Previa Cita</span>
+        </div>
+      </div>
+
+      <!-- Imagen Plano Nogalar con zoom al clic -->
+      <div class="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 cursor-zoom-in group relative shadow-inner" onclick="abrirModalPlanoCon('nogalar')">
+        <img src="./plano-lotes.jpg" alt="Plano de Lotes Nogalar de la Aurora" class="w-full h-auto max-h-[580px] object-contain mx-auto transition-transform duration-300 group-hover:scale-[1.02]">
+        <div class="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <span class="bg-white text-slate-900 font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 transform group-hover:scale-105 transition-transform">
+            <span>🔍</span> Clic para ampliar en pantalla completa
           </span>
         </div>
       </div>
@@ -1149,13 +1253,30 @@
   </a>
 
 
-  <!-- MODAL ZOOM PLANO -->
+  <!-- MODAL ZOOM PLANO INTERACTIVO -->
   <div id="modal-plano" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-4 backdrop-blur-md" onclick="cerrarModalPlano()">
-    <div class="relative max-w-5xl w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden p-2" onclick="event.stopPropagation()">
-      <button onclick="cerrarModalPlano()" class="absolute top-4 right-4 z-10 bg-slate-900 text-white rounded-full p-2 hover:bg-slate-700">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-      <img src="./plano-lotes.jpg" alt="Plano Lotes Completo" class="w-full h-auto max-h-[85vh] object-contain mx-auto rounded-lg">
+    <div class="relative max-w-6xl w-full max-h-[92vh] bg-white rounded-2xl overflow-hidden p-4 sm:p-6 flex flex-col shadow-2xl" onclick="event.stopPropagation()">
+      
+      <!-- Cabecera del Visor Modal -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+        <div>
+          <h4 id="modal-plano-titulo" class="font-serif font-bold text-slate-900 text-lg sm:text-xl">Plano Oficial de Lotificación</h4>
+          <p id="modal-plano-subtitulo" class="text-xs text-slate-500 mt-0.5">Fraccionamiento San Manuel • 55 Lotes Residenciales de 200 m²</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <a id="modal-plano-descargar" href="./plano-san-manuel.pdf" download="Plano-San-Manuel-Degara.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 text-xs bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-4 py-2 rounded-xl transition-colors shadow">
+            <span>📥</span> Descargar PDF
+          </a>
+          <button onclick="cerrarModalPlano()" class="bg-slate-900 hover:bg-slate-700 text-white rounded-full p-2 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Imagen en Alta Definición con Scroll/Pan -->
+      <div class="overflow-auto max-h-[76vh] flex items-center justify-center p-2 bg-slate-100 rounded-xl mt-4 border border-slate-200">
+        <img id="modal-plano-img" src="./img/plano-san-manuel.jpg" alt="Plano Lotes Completo" class="w-full h-auto max-h-[74vh] object-contain mx-auto rounded-lg">
+      </div>
     </div>
   </div>
 
@@ -1365,14 +1486,77 @@
       setPlazo(0);
     }
 
-    // MODAL PLANO
-    function abrirModalPlano() {
+    // CONTROLADOR DE PLANOS Y SELECTOR DE DESARROLLOS
+    let planoActivo = 'sanmanuel';
+
+    function cambiarPlano(tipo) {
+      planoActivo = tipo;
+      const btnSanManuel = document.getElementById('tab-btn-sanmanuel');
+      const btnNogalar = document.getElementById('tab-btn-nogalar');
+      const contentSanManuel = document.getElementById('plano-content-sanmanuel');
+      const contentNogalar = document.getElementById('plano-content-nogalar');
+
+      if (tipo === 'sanmanuel') {
+        if (contentSanManuel) contentSanManuel.classList.remove('hidden');
+        if (contentNogalar) contentNogalar.classList.add('hidden');
+
+        if (btnSanManuel) {
+          btnSanManuel.className = 'w-full sm:w-1/2 py-3.5 px-6 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 bg-brand-forest text-white shadow-lg';
+        }
+        if (btnNogalar) {
+          btnNogalar.className = 'w-full sm:w-1/2 py-3.5 px-6 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900 hover:bg-white/60';
+        }
+      } else {
+        if (contentSanManuel) contentSanManuel.classList.add('hidden');
+        if (contentNogalar) contentNogalar.classList.remove('hidden');
+
+        if (btnSanManuel) {
+          btnSanManuel.className = 'w-full sm:w-1/2 py-3.5 px-6 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900 hover:bg-white/60';
+        }
+        if (btnNogalar) {
+          btnNogalar.className = 'w-full sm:w-1/2 py-3.5 px-6 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 bg-amber-700 text-white shadow-lg';
+        }
+      }
+    }
+
+    function abrirModalPlanoCon(tipo) {
+      if (tipo) {
+        cambiarPlano(tipo);
+      }
+      const modalImg = document.getElementById('modal-plano-img');
+      const modalTitulo = document.getElementById('modal-plano-titulo');
+      const modalSubtitulo = document.getElementById('modal-plano-subtitulo');
+      const modalDescargar = document.getElementById('modal-plano-descargar');
+
+      if (planoActivo === 'sanmanuel') {
+        if (modalImg) modalImg.src = './img/plano-san-manuel.jpg';
+        if (modalTitulo) modalTitulo.textContent = 'Plano Oficial • Fraccionamiento San Manuel';
+        if (modalSubtitulo) modalSubtitulo.textContent = '55 Lotes Residenciales de 200 m² (10m x 20m) • Saltillo, Coahuila';
+        if (modalDescargar) {
+          modalDescargar.classList.remove('hidden');
+          modalDescargar.href = './plano-san-manuel.pdf';
+          modalDescargar.download = 'Plano-San-Manuel-Degara.pdf';
+        }
+      } else {
+        if (modalImg) modalImg.src = './plano-lotes.jpg';
+        if (modalTitulo) modalTitulo.textContent = 'Plano Oficial • Nogalar de la Aurora';
+        if (modalSubtitulo) modalSubtitulo.textContent = 'Residencial Campestre en Huerta de Nogales • Saltillo, Coahuila';
+        if (modalDescargar) {
+          modalDescargar.classList.add('hidden');
+        }
+      }
+
       const modal = document.getElementById('modal-plano');
       if (modal) {
         modal.classList.remove('hidden');
         modal.classList.add('flex');
       }
     }
+
+    function abrirModalPlano() {
+      abrirModalPlanoCon(planoActivo);
+    }
+
     function cerrarModalPlano() {
       const modal = document.getElementById('modal-plano');
       if (modal) {
